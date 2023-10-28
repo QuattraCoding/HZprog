@@ -1,12 +1,18 @@
 package org.example;
+import org.jfugue.*;
+import org.jfugue.player.Player;
 
-import java.util.concurrent.TimeUnit;
+import java.io.IOException;
 
 public class HZmain
 {
     static MyStopwatch t = new MyStopwatch();
     public static void main( String[] args )
     {
-        t.reactionTimer();
+        try {
+            t.reactionTimer();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
     }

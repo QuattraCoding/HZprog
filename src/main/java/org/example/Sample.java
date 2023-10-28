@@ -1,10 +1,12 @@
 package org.example;
 
+
 public class Sample {
     //Attribute
     private int num;
     private int hz;
 
+    private MyStopwatch timer;
     /*
 
     */
