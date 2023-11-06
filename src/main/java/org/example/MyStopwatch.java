@@ -1,46 +1,77 @@
 package org.example;
 
 import org.apache.commons.lang3.time.StopWatch;
-import org.jfugue.player.Player;
 
+
+import javax.swing.*;
 import java.io.*;
 
 import java.util.concurrent.TimeUnit;
 import java.util.Random;
-import java.util.Scanner;
 
-public class MyStopwatch {
 
-    private Scanner scan = new Scanner(System.in);
-    private boolean b = true;
-    private Random random = new Random();
+
+import java.awt.event.*;
+import javax.swing.*;
+
+public class MyStopwatch implements ActionListener {
+
+    JFrame frame = new JFrame();
+    JButton button = new JButton();
+
+
+    boolean buttonClicked = false;
+    private final boolean b = true;
+    private final Random random = new Random();
     public StopWatch time = new StopWatch();
 
 
     public MyStopwatch(){
 
+        button.setBounds(0,0,420,420);
+        button.setFocusable(false);
+
+        frame.add(button);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setSize(420,420);
+        frame.setLayout(null);
+        frame.setVisible(true);
+
     }
 
     public long randomiseTime(){
 
-        long l = (long) random.nextInt(11) + 1;
+        long l = random.nextInt(11);
         return l;
     }
     public void reactionTimer(){
+
         long a = randomiseTime();
         time.start();
     do{
         if(time.getTime(TimeUnit.SECONDS) == a) {
-            String input;
+
+            button.setText("lol click");
             //First time since start saved here
-            long t1 = (long) time.getTime(TimeUnit.MILLISECONDS);
-            System.out.println("HELL YEAH");
+            long t1 = time.getTime(TimeUnit.MILLISECONDS);
+
+            button.addActionListener(new ActionListener(){
+                    public void actionPerformed(ActionEvent e){
+                    buttonClicked = true;
+
+
+                    }
+
+                    });
+
+
+
+
+
             do {
-                InputStreamReader sReader = new InputStreamReader(System.in);
-                String verf = sReader.read();
 
                 //If statement that shows if the string isn't empty.
-                if (verf != null) {
+                if (buttonClicked) {
                     //Second time saved here
                     time.split();
                     long t2 = time.getSplitTime();
@@ -62,5 +93,9 @@ public class MyStopwatch {
 
     }
 
+    @Override
+    public void actionPerformed(ActionEvent e) {
+
+    }
 }
 
