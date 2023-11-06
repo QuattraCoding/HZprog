@@ -3,8 +3,8 @@ package org.example;
 
 public class Sample {
     //Attribute
-    private int num;
-    private int hz;
+    private final int num;
+    private final int hz;
 
     private MyStopwatch timer;
     /*
