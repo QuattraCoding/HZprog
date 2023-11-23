@@ -1,12 +1,13 @@
 package org.example;
 
-import java.io.IOException;
+import javax.sound.sampled.LineUnavailableException;
 
 public class HZmain
 {
-    public static void main( String[] args )
+    public static void main( String[] args )throws
+            LineUnavailableException
     {
-        MyStopwatch t = new MyStopwatch();
-        t.reactionTimer();
+        HzProgram t = new HzProgram();
+        t.InitiateTest();
     }
     }

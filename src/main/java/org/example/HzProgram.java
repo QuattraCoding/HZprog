@@ -3,22 +3,22 @@ package org.example;
 import org.apache.commons.lang3.time.StopWatch;
 
 
+import javax.sound.sampled.LineUnavailableException;
 import javax.swing.*;
-import java.io.*;
 
+import java.util.TimerTask;
 import java.util.concurrent.TimeUnit;
 import java.util.Random;
 
 
 
 import java.awt.event.*;
-import javax.swing.*;
 
-public class MyStopwatch implements ActionListener {
+public class HzProgram implements ActionListener {
+
 
     JFrame frame = new JFrame();
-    JButton button = new JButton();
-
+    public JButton button = new JButton();
 
     boolean buttonClicked = false;
     private final boolean b = true;
@@ -26,7 +26,7 @@ public class MyStopwatch implements ActionListener {
     public StopWatch time = new StopWatch();
 
 
-    public MyStopwatch(){
+    public HzProgram(){
 
         button.setBounds(0,0,420,420);
         button.setFocusable(false);
@@ -41,33 +41,29 @@ public class MyStopwatch implements ActionListener {
 
     public long randomiseTime(){
 
-        long l = random.nextInt(11);
-        return l;
+        long randomisedTime = random.nextInt(11);
+        return randomisedTime;
     }
-    public void reactionTimer(){
+    public void InitiateTest() throws LineUnavailableException {
+        Sample sample1 = new Sample();
+        sample1.sound();
 
         long a = randomiseTime();
+
         time.start();
     do{
         if(time.getTime(TimeUnit.SECONDS) == a) {
-
             button.setText("lol click");
             //First time since start saved here
             long t1 = time.getTime(TimeUnit.MILLISECONDS);
-
+            sample1.playSound();
             button.addActionListener(new ActionListener(){
                     public void actionPerformed(ActionEvent e){
                     buttonClicked = true;
 
-
                     }
 
                     });
-
-
-
-
-
             do {
 
                 //If statement that shows if the string isn't empty.
@@ -80,6 +76,7 @@ public class MyStopwatch implements ActionListener {
                     System.out.println(a + " är slumpmässigt tid");
                     long tResult = t2 - t1;
                     System.out.println("Millisekunder som har gått mellan intervallen är: " + tResult);
+                    sample1.stopSound();
                     break;
                 }
 
