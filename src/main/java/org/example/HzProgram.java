@@ -6,6 +6,7 @@ import org.apache.commons.lang3.time.StopWatch;
 import javax.sound.sampled.LineUnavailableException;
 import javax.swing.*;
 
+import java.util.List;
 import java.util.TimerTask;
 import java.util.concurrent.TimeUnit;
 import java.util.Random;
@@ -24,6 +25,8 @@ public class HzProgram implements ActionListener {
     private final boolean b = true;
     private final Random random = new Random();
     public StopWatch time = new StopWatch();
+
+    private List<Frequency> frequencies = List.of(new Frequency("E1", 41.2f), new Frequency("C3", 130.8f), new Frequency("G3", 196f), new Frequency("A4", 440f), new Frequency("D5", 597.33f) );
 
 
     public HzProgram(){
@@ -45,8 +48,7 @@ public class HzProgram implements ActionListener {
         return randomisedTime;
     }
     public void InitiateTest() throws LineUnavailableException {
-        Sample sample1 = new Sample();
-        sample1.sound();
+        Sample sample1 = new Sample(new FrequencyGenerator(frequencies));
 
         long a = randomiseTime();
 

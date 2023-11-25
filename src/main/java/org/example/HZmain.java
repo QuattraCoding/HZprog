@@ -8,6 +8,9 @@ public class HZmain
             LineUnavailableException
     {
         HzProgram t = new HzProgram();
-        t.InitiateTest();
+        Frequency frequency = new Frequency();
+        frequency.randomiseFrequency();
+        System.out.println(frequency.hz);
+        System.out.println(frequency.name);
     }
     }
