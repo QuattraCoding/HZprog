@@ -6,22 +6,29 @@ import javax.sound.sampled.*;
 
 public class Sample {
     //Attribute
-    private int vol =  1;
+    private final int vol =  1;
     static float SAMPLE_RATE = 44100f;
     public static final double SAMPLE_RATED_DIV_BY_100 = SAMPLE_RATE / 100.0;
     byte[] buf = new byte[(int)SAMPLE_RATE];
     public SourceDataLine sDataLine;
     public StopWatch time = new StopWatch();
+    FrequencyGenerator frequencyGenerator;
 
-    /** https://groups.google.com/g/comp.lang.java.help/c/7vR_AWw1AwQ?pli=1 */
+
     public Sample(FrequencyGenerator frequencyGenerator)
             throws LineUnavailableException {
+        this.frequencyGenerator = frequencyGenerator;
+        generateSineWave();
+    }
+
+    /** https://groups.google.com/g/comp.lang.java.help/c/7vR_AWw1AwQ?pli=1 */
+    public void generateSineWave(){
 
         Frequency frequency = frequencyGenerator.randomiseFrequency();
-
-        if (frequency.getFrequency() <= 0)
+        System.out.println(frequency.getFrequency());
+        if (frequency.getFrequency() <= 0){
             throw new IllegalArgumentException("Frequency <= 0 hz");
-
+        }
 
         for (int i=0; i<buf.length; i++) {
             double angle = i / (SAMPLE_RATE / frequency.getFrequency()) * 2.0 * Math.PI;
@@ -36,12 +43,20 @@ public class Sample {
         }
 
         AudioFormat audioFormat = new AudioFormat(SAMPLE_RATE,8,1,true,false);
-        this.sDataLine = AudioSystem.getSourceDataLine(audioFormat);
-        sDataLine.open(audioFormat);
-        sDataLine.start();
+        try {
+            this.sDataLine = AudioSystem.getSourceDataLine(audioFormat);
+        } catch (LineUnavailableException e) {
+            throw new RuntimeException(e);
+        }
+        try {
+            sDataLine.open(audioFormat);
+        } catch (LineUnavailableException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     public void playSound(){
+        sDataLine.start();
         sDataLine.write(buf, 0, buf.length);
     }
 

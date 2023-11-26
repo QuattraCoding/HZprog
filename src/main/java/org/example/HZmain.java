@@ -1,16 +1,14 @@
 package org.example;
 
 import javax.sound.sampled.LineUnavailableException;
+import java.io.IOException;
 
 public class HZmain
 {
-    public static void main( String[] args )throws
-            LineUnavailableException
-    {
-        HzProgram t = new HzProgram();
-        Frequency frequency = new Frequency();
-        frequency.randomiseFrequency();
-        System.out.println(frequency.hz);
-        System.out.println(frequency.name);
+    static SineWaveThread sineWaveThread = new SineWaveThread();
+    HzProgram hzprogram = new HzProgram();
+    public static void main( String[] args ) throws LineUnavailableException {
+        sineWaveThread.start();
+
     }
     }
