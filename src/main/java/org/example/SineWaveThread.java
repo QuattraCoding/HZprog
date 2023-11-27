@@ -8,6 +8,8 @@ public class SineWaveThread extends Thread{
     boolean aBoolean = true;
     Sample sample1;
 
+    int index = 1;
+
     @Override
     public void run() {
         try {
@@ -18,11 +20,14 @@ public class SineWaveThread extends Thread{
 
         do {
             sample1.playSound();
+            System.out.println(index);
+            index++;
             try {
-                Thread.sleep(sample1.buf.length);
+                Thread.sleep( (long)(sample1.buf.length / (200 * Math.PI)));
             } catch (InterruptedException e) {
                 throw new RuntimeException(e);
             }
+
         } while(aBoolean);
 
 
