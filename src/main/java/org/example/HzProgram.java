@@ -17,15 +17,13 @@ public class HzProgram implements ActionListener {
 
     JFrame frame = new JFrame();
     public JButton button = new JButton();
-    boolean buttonClicked = false;
-    private final boolean RandomisedTimeElapsed = true;
+    private final boolean ON = true;
     private final Random random = new Random();
     public StopWatch time = new StopWatch();
-
+    boolean buttonClicked;
     SineWaveThread sineWaveThread = new SineWaveThread();
 
     /* -------------------------------------------- */
-
 
     public HzProgram(){
 
@@ -61,9 +59,10 @@ public class HzProgram implements ActionListener {
             long t1 = time.getTime(TimeUnit.MILLISECONDS);
 
             button.addActionListener(new ActionListener(){
+                    @Override
                     public void actionPerformed(ActionEvent e){
                     buttonClicked = true;
-                    sineWaveThread.sample1.stopSound();
+                    sineWaveThread.sample1.buttonClicked = true;
                     sineWaveThread.interrupt();
 
                     }
@@ -80,6 +79,7 @@ public class HzProgram implements ActionListener {
                     System.out.println(randomisedTime + " är slumpmässigt tid");
                     long tResult = t2 - t1;
                     System.out.println("Millisekunder som har gått mellan intervallen är: " + tResult);
+                    System.out.println("Frekvensen = " + sineWaveThread.sample1.frequency.getFrequency() + ". Tone = " + sineWaveThread.sample1.frequency.getName());
 
                     break;
                 }
@@ -88,7 +88,7 @@ public class HzProgram implements ActionListener {
             }while(time.getTime(TimeUnit.SECONDS) >= randomisedTime);
 
         }
-    }while(RandomisedTimeElapsed);
+    }while(ON);
 
     }
     public long randomiseTime(){

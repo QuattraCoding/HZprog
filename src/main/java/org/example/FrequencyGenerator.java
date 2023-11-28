@@ -16,8 +16,6 @@ public class FrequencyGenerator {
         for(Frequency f : frequencies){
             frequenciesMap.put(index++, f);
         }
-
-
     }
 
     public Frequency randomiseFrequency(){

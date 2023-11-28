@@ -11,6 +11,9 @@ public class Sample {
     public SourceDataLine sDataLine;
     FrequencyGenerator frequencyGenerator;
 
+    Frequency frequency;
+    boolean buttonClicked = false;
+
 
     public Sample(FrequencyGenerator frequencyGenerator)
             throws LineUnavailableException {
@@ -21,7 +24,7 @@ public class Sample {
     /** https://groups.google.com/g/comp.lang.java.help/c/7vR_AWw1AwQ?pli=1 */
     public void generateSineWave(){
 
-        Frequency frequency = frequencyGenerator.randomiseFrequency();
+        frequency = frequencyGenerator.randomiseFrequency();
         System.out.println(frequency.getFrequency());
         if (frequency.getFrequency() <= 0){
             throw new IllegalArgumentException("Frequency <= 0 hz");
@@ -55,11 +58,11 @@ public class Sample {
     public void playSound(){
         sDataLine.start();
         sDataLine.write(buf, 0, buf.length);
-    }
 
-    public void stopSound(){
-        sDataLine.drain();
-        sDataLine.close();
+        if(buttonClicked){
+            sDataLine.drain();
+            sDataLine.close();
+        }
     }
 
 }
