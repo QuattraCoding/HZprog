@@ -1,23 +1,31 @@
 package org.example;
 
 import javax.sound.sampled.LineUnavailableException;
-import java.util.List;
+import java.util.*;
 
 public class SineWaveThread extends Thread{
-    private final List<Frequency> frequencies = List.of(new Frequency("E1", 41.2f), new Frequency("C3", 130.8f), new Frequency("G3", 196f), new Frequency("A4", 440f), new Frequency("D5", 597.33f) );
-    boolean aBoolean = true;
-    Sample sample1;
 
+    public SineWaveThread(ArrayList<Sample> samples, FixFrequencies fixFrequencies){
+
+
+
+
+    }
+
+    Sample sample1;
+    boolean aBoolean = true;
     int index = 1;
 
     @Override
     public void run() {
-        try {
-            sample1 = new Sample(new FrequencyGenerator(frequencies));
-        } catch (LineUnavailableException e) {
-            throw new RuntimeException(e);
-        }
 
+        playSample(sample1);
+
+
+    }
+
+
+    public void playSample(Sample sample){
         do {
             sample1.playSound();
             System.out.println(index);
@@ -29,9 +37,5 @@ public class SineWaveThread extends Thread{
             }
 
         } while(aBoolean);
-
-
-
-
     }
 }
