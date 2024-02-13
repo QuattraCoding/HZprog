@@ -1,41 +1,38 @@
 package org.example;
 
-import javax.sound.sampled.LineUnavailableException;
-import java.util.*;
+import org.example.Frequency;
+import org.example.Logistics;
 
-public class SineWaveThread extends Thread{
-
-    public SineWaveThread(ArrayList<Sample> samples, FixFrequencies fixFrequencies){
-
-
+public class SineWaveThread extends Thread {
+    boolean onSwitch = true;
+    Logistics logistics;
+    public SineWaveThread(Logistics logistics ){
+    this.logistics = logistics;
 
 
     }
-
-    Sample sample1;
-    boolean aBoolean = true;
-    int index = 1;
 
     @Override
     public void run() {
 
-        playSample(sample1);
-
+        playSample(logistics.ChooseFrequency());
 
     }
-
-
-    public void playSample(Sample sample){
+    public void Stop() {
+        onSwitch = false;
+    }
+    public void playSample(Frequency frequency){
+        logistics.playSound.generateSineWave(frequency);
         do {
-            sample1.playSound();
-            System.out.println(index);
-            index++;
+            logistics.playSound.playSound();
             try {
-                Thread.sleep( (long)(sample1.buf.length / (200 * Math.PI)));
+                Thread.sleep( (long) (logistics.playSound.buf.length / (200 * Math.PI)));
             } catch (InterruptedException e) {
+                System.out.println("Ultragay");
                 throw new RuntimeException(e);
             }
-
-        } while(aBoolean);
+        } while(onSwitch);
+        logistics.playSound.stopSound();
     }
+
 }

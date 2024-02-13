@@ -5,10 +5,8 @@ public class Frequency {
     private float frequency;
 
     public Frequency (String name, float frequency ) {
-
         this.name = name;
         this.frequency = frequency;
-
     }
 
     public String getName() {
