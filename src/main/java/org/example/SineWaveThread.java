@@ -15,7 +15,9 @@ public class SineWaveThread extends Thread {
     @Override
     public void run() {
 
-        playSample(logistics.ChooseFrequency());
+        Frequency f = logistics.ChooseFrequency();
+        playSample(f);
+        System.out.println(f.getName());
 
     }
     public void Stop() {

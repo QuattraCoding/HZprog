@@ -32,7 +32,6 @@ public class TestThread extends Thread{
     @Override
     public void run() {
             b1 = true;
-
         runTest.startTimer();
         doWhileLoop.start();
 
@@ -41,24 +40,26 @@ public class TestThread extends Thread{
             if(runTest.time.getTime(TimeUnit.SECONDS) == runTest.randomisedTime) {
                 if (!runTest.sineWaveThread.isAlive()) {
                     b2 = true;
-                    System.out.println("timern startad");
                     runTest.sineWaveThread.start();
                     //First time since start saved here
-
                     runTest.t1 = runTest.time.getTime(TimeUnit.MILLISECONDS);
                 }
             }
 
             if(!runTest.sineWaveThread.onSwitch) {
                 runTest.time.split();
+
+                System.out.println();
                 long t2 = runTest.time.getSplitTime();
                 long tResult = runTest.t2 - runTest.t1;
                 System.out.println("Millisekunder som har gått mellan intervallen är: " + tResult);
+                System.out.println();
                 System.out.println(t2 + " : t2");
                 System.out.println(runTest.t1 + " : t1");
                 System.out.println(runTest.randomisedTime + " är slumpmässigt tid");
                 runTest.time.stop();
                 runTest.setRandomisedTimeElapsed(false);
+
 
             }
         }while(runTest.isRandomisedTimeElapsed());
