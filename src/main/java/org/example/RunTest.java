@@ -40,7 +40,7 @@ public class RunTest {
     }
 
     public long randomiseTime(){
-        randomisedTime = random.nextInt(11) + 2;
+        randomisedTime = random.nextInt(4) + 2;
         return randomisedTime;
     }
 

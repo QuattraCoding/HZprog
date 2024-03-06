@@ -31,20 +31,11 @@ public class mouseListner implements MouseListener {
 
     @Override
     public void mouseReleased(MouseEvent e) {
-
-        if(!this.started) {
-            this.started = true;
-            sexy.starter();
-        } else {
-            this.started = false;
-            sexy.stopper();
-        }
-
-
     }
 
     @Override
     public void mouseEntered(MouseEvent e) {
+
     }
 
     @Override

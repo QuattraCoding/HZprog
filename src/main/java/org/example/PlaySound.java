@@ -25,11 +25,7 @@ public class PlaySound {
     public void generateSineWave(Frequency frequency) {
 
         final int vol = 1;
-
         final double SAMPLE_RATED_DIV_BY_100 = SAMPLE_RATE / 100.0;
-
-
-
 
         if (frequency.getFrequency() <= 0) {
             throw new IllegalArgumentException("Frequency <= 0 hz");
