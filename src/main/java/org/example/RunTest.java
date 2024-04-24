@@ -7,7 +7,8 @@ import java.util.Random;
 import java.util.concurrent.TimeUnit;
 
 public class RunTest {
-    boolean b = false;
+
+    //alot of essential things to the program are here and values used to calculate milliseconds between are also here. has a method that runs the test once.
     long t1;
     long t2;
     long randomisedTime;
@@ -22,17 +23,15 @@ public class RunTest {
     }
 
     private boolean randomisedTimeElapsed = true;
-    Logistics logistics;
-    StopWatch time = new StopWatch();
-    SineWaveThread sineWaveThread;
-    Canvas canvas;
-    MouseListener action;
-    public RunTest(Logistics logistics,Canvas canvas){
-
-        this.canvas = canvas;
+    final StopWatch time = new StopWatch();
+    private SineWaveThread sineWaveThread;
+    private final HzGUI hzGUI;
+    public RunTest(Logistics logistics, HzGUI hzGUI){
+        this.hzGUI = hzGUI;
         sineWaveThread = new SineWaveThread(logistics);
     }
     public void startTimer(){
+        //starts test and timer
         randomisedTime = randomiseTime();
         System.out.println("Test startat");
         time.start();
@@ -45,5 +44,8 @@ public class RunTest {
     }
 
 
+    public SineWaveThread getSineWaveThread() {
+        return sineWaveThread;
+    }
 }
 

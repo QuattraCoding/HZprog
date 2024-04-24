@@ -9,9 +9,10 @@ public class FixTimesPlayed {
     public int getTimesPlayed(int index){
         return intlist[index];
     }
-    int[] intlist;
+    public int[] intlist;
 
     public FixTimesPlayed(List<Frequency> frequencies){
+        //creates trackers for each time a Frequency is played.
         int index = 0;
         for (Frequency f : frequencies){
 

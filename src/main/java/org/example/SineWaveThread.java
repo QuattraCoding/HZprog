@@ -4,8 +4,9 @@ import org.example.Frequency;
 import org.example.Logistics;
 
 public class SineWaveThread extends Thread {
+    //Object that runs the test in a different thread so that the whole program doesnt stop.
     boolean onSwitch = true;
-    Logistics logistics;
+    private final Logistics logistics;
     public SineWaveThread(Logistics logistics ){
     this.logistics = logistics;
 
@@ -14,6 +15,7 @@ public class SineWaveThread extends Thread {
 
     @Override
     public void run() {
+        //plays sample enables it to play on a loop.
 
         Frequency f = logistics.ChooseFrequency();
         playSample(f);
@@ -25,7 +27,10 @@ public class SineWaveThread extends Thread {
     }
     public void playSample(Frequency frequency){
         logistics.playSound.generateSineWave(frequency);
+        int count= 0;
         do {
+            System.out.println("SinWaveThreead counter " + count);
+            count++;
             logistics.playSound.playSound();
             try {
                 Thread.sleep( (long) (logistics.playSound.buf.length / (200 * Math.PI)));
@@ -33,7 +38,8 @@ public class SineWaveThread extends Thread {
                 System.out.println("Ultragay");
                 throw new RuntimeException(e);
             }
-        } while(onSwitch);
+
+        } while(onSwitch && count <5);
         logistics.playSound.stopSound();
     }
 

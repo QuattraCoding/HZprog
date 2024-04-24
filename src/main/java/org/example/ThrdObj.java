@@ -1,27 +1,31 @@
 package org.example;
 
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
 import java.util.ArrayList;
 
 public class ThrdObj{
-    Logistics logistics;
-    TestThread testThread;
-    Canvas canvas;
-    int index;
-    HzFrame hzFrame;
-    mouseListner mouseL;
+    //this is the object that gets put into an array and removed, starts the test also.
+    private final Canvas canvas;
+
+    public TestThread getTestThread() {
+        return testThread;
+    }
+
+    public void setTestThread(TestThread testThread) {
+        this.testThread = testThread;
+    }
+
+    private TestThread testThread;
+    private final mouseListner mouseL;
+    HzGUI hzGUI ;
     ArrayList<ThrdObj> threadObjects;
 
-    public ThrdObj(Logistics logistics, HzFrame hzFrame,ArrayList<ThrdObj> threadObjects, int index){
+    public ThrdObj(Logistics logistics, HzGUI hzGUI, ArrayList<ThrdObj> threadObjects, int index){
         this.mouseL = new mouseListner(this);
-        this.index = index;
+        this.hzGUI = hzGUI;
         this.threadObjects = threadObjects;
-        this.hzFrame = hzFrame;
-        this.logistics = logistics;
         canvas = new Canvas();
-        hzFrame.add(canvas);
-        this.testThread = new TestThread(logistics, canvas, index, hzFrame, threadObjects, mouseL);
+        hzGUI.add(canvas);
+        this.testThread = new TestThread(logistics, canvas, index, this.hzGUI, threadObjects, mouseL);
         canvas.addMouseListener(this.mouseL);
 
 
@@ -33,10 +37,9 @@ public class ThrdObj{
     }
     public void stopper() {
         canvas.removeMouseListener(this.mouseL);
-        this.testThread.runTest.sineWaveThread.Stop();
+        this.testThread.runTest.getSineWaveThread().Stop();
        // threadObjects.remove(index);
        // threadObjects.add(index, new ThrdObj(logistics,hzFrame,threadObjects,index));
 
     }
-
 }

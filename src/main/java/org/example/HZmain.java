@@ -6,6 +6,7 @@ import javax.sound.sampled.LineUnavailableException;
 import java.util.List;
 
 public class HZmain {
+    //main class.
     public static void main(String[] args) throws LineUnavailableException {
 
     HzProgram hzProgram = new HzProgram();

@@ -8,12 +8,12 @@ import org.example.PlaySound;
 import java.util.List;
 
 public class Logistics {
-    int checker = 0;
-    boolean isRunning = true;
+    private int checker = 0;
+    private boolean isRunning = true;
     //Skapar Hashmap (Fungerar)
-    FixedHashMap fixedHashMap;
+    public FixedHashMap fixedHashMap;
     //Skapar IntArray med gånger spelade (Fungerar)
-    FixTimesPlayed fixTimesPlayed;
+    private final FixTimesPlayed fixTimesPlayed;
     // Skapar körbar ljudmetod och liknande (fungerar)
     PlaySound playSound = new PlaySound();
     int i2;
@@ -25,11 +25,14 @@ public class Logistics {
 
         playSound.stopSound();
     }
-    // väljer frekvens slumpmässigt och stannar efter varje frekvens är klar
+    // chooses frequency randomly and checks for times played, to make sure it doesnt play that frequency.
     public Frequency ChooseFrequency() {
 
         i2 = playSound.rollNumber(fixedHashMap.getFrequencyHashMap());
+        int counter = 0;
         do {
+            System.out.println("Logistic counter " + counter);
+            counter++;
 
             if (fixTimesPlayed.intlist[i2] < 4) {
                 fixTimesPlayed.intlist[i2]++;
@@ -46,7 +49,8 @@ public class Logistics {
 
                 }
             }
-        }while(isRunning);
+
+        }while(isRunning && counter <5);
 
         return null;}
 

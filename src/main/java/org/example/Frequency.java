@@ -1,8 +1,9 @@
 package org.example;
 
 public class Frequency {
+    //includes values and names for hz.
     private String name;
-    private float frequency;
+    private final float frequency;
 
     public Frequency (String name, float frequency ) {
         this.name = name;
@@ -12,16 +13,8 @@ public class Frequency {
     public String getName() {
         return name;
     }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
     public float getFrequency() {
         return frequency;
     }
 
-    public void setFrequency(float frequency) {
-        this.frequency = frequency;
-    }
 }

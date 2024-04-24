@@ -11,11 +11,12 @@ import java.util.Random;
 
 
 public class PlaySound {
+    //makes sound play and activates a audioinputStream.
     float SAMPLE_RATE = 44100f;
 
-    byte[] buf = new byte[(int) SAMPLE_RATE];
+    final byte[] buf = new byte[(int) SAMPLE_RATE];
     private SourceDataLine sDataLine;
-    Random random = new Random();
+    private final Random random = new Random();
     public int rollNumber(HashMap<Integer, Frequency> frequencies){
         return random.nextInt(frequencies.size());
     }
@@ -23,6 +24,7 @@ public class PlaySound {
 
     }
     public void generateSineWave(Frequency frequency) {
+        //generates the sinewave connected to the frequency.
 
         final int vol = 1;
         final double SAMPLE_RATED_DIV_BY_100 = SAMPLE_RATE / 100.0;

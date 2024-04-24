@@ -4,21 +4,21 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
 public class mouseListner implements MouseListener {
-    ThrdObj sexy;
-
-    boolean started = false;
-    mouseListner(ThrdObj sexy) {
-        this.sexy = sexy;
+    //switches from on and off depending on value of boolean inside mouselistener.
+    private final ThrdObj thrdObj;
+    private boolean started = false;
+    mouseListner(ThrdObj thrdObj) {
+        this.thrdObj = thrdObj;
     }
 
     @Override
     public void mouseClicked(MouseEvent e) {
         if(!this.started) {
             this.started = true;
-            sexy.starter();
+            thrdObj.starter();
         } else {
             this.started = false;
-            sexy.stopper();
+            thrdObj.stopper();
         }
 
 
