@@ -15,12 +15,12 @@ public class ThrdObj{
     }
 
     private TestThread testThread;
-    private final mouseListner mouseL;
+    private final mouseListenerObj mouseL;
     HzGUI hzGUI ;
     ArrayList<ThrdObj> threadObjects;
 
     public ThrdObj(Logistics logistics, HzGUI hzGUI, ArrayList<ThrdObj> threadObjects, int index){
-        this.mouseL = new mouseListner(this);
+        this.mouseL = new mouseListenerObj(this);
         this.hzGUI = hzGUI;
         this.threadObjects = threadObjects;
         canvas = new Canvas();

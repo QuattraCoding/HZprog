@@ -3,11 +3,11 @@ package org.example;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
-public class mouseListner implements MouseListener {
+public class mouseListenerObj implements MouseListener {
     //switches from on and off depending on value of boolean inside mouselistener.
     private final ThrdObj thrdObj;
     private boolean started = false;
-    mouseListner(ThrdObj thrdObj) {
+    mouseListenerObj(ThrdObj thrdObj) {
         this.thrdObj = thrdObj;
     }
 

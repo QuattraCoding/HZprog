@@ -1,10 +1,5 @@
 package org.example;
 
-import org.example.FixTimesPlayed;
-import org.example.FixedHashMap;
-import org.example.Frequency;
-import org.example.PlaySound;
-
 import java.util.List;
 
 public class Logistics {
@@ -13,19 +8,19 @@ public class Logistics {
     //Skapar Hashmap (Fungerar)
     public FixedHashMap fixedHashMap;
     //Skapar IntArray med gånger spelade (Fungerar)
-    private final FixTimesPlayed fixTimesPlayed;
+    private final TimesPlayedFixer fixTimesPlayed;
     // Skapar körbar ljudmetod och liknande (fungerar)
-    PlaySound playSound = new PlaySound();
+    SoundPlayer playSound = new SoundPlayer();
     int i2;
     public Logistics(List<Frequency> frequencies){
         this.fixedHashMap = new FixedHashMap(frequencies);
-        this.fixTimesPlayed = new FixTimesPlayed(frequencies);
+        this.fixTimesPlayed = new TimesPlayedFixer(frequencies);
     }
     public void stopSound() {
 
         playSound.stopSound();
     }
-    // chooses frequency randomly and checks for times played, to make sure it doesnt play that frequency.
+    // chooses frequency randomly and checks for times played, to make sure it doesn't play that frequency.
     public Frequency ChooseFrequency() {
 
         i2 = playSound.rollNumber(fixedHashMap.getFrequencyHashMap());

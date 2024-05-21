@@ -10,10 +10,10 @@ public class DoWhileLoop extends Thread{
     private final HzGUI hzFrame;
     private final ArrayList<ThrdObj> threadObjects;
     private final Logistics logistics;
-    private final mouseListner mouseL;
+    private final mouseListenerObj mouseL;
     HzGUI hzGUI;
 
-    public DoWhileLoop(Logistics logistics, TestThread testThread, Canvas canvas, int index, HzGUI hzFrame, ArrayList<ThrdObj> threadObjects, mouseListner mouseL) {
+    public DoWhileLoop(Logistics logistics, TestThread testThread, Canvas canvas, int index, HzGUI hzFrame, ArrayList<ThrdObj> threadObjects, mouseListenerObj mouseL) {
         //constructor
         this.hzGUI = hzFrame;
         this.testThread = testThread;

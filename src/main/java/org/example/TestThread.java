@@ -1,10 +1,5 @@
 package org.example;
 
-import org.whispersystems.libsignal.logging.Log;
-
-import java.awt.*;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
 import java.util.ArrayList;
 import java.util.concurrent.TimeUnit;
 
@@ -20,7 +15,7 @@ public class TestThread extends Thread{
 
     private final DoWhileLoop doWhileLoop;
 
-    public TestThread (Logistics logistics, Canvas canvas, int index, HzGUI hzFrame, ArrayList<ThrdObj> threadObjects, mouseListner mouseL){
+    public TestThread (Logistics logistics, Canvas canvas, int index, HzGUI hzFrame, ArrayList<ThrdObj> threadObjects, mouseListenerObj mouseL){
         doWhileLoop = new DoWhileLoop(logistics,this , canvas, index, hzFrame, threadObjects, mouseL);
         runTest = new RunTest(logistics, hzFrame);
         this.hzGUI = hzFrame;

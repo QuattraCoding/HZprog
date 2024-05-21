@@ -1,7 +1,5 @@
 package org.example;
 
-import org.example.Frequency;
-
 import javax.sound.sampled.AudioFormat;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.LineUnavailableException;
@@ -10,8 +8,8 @@ import java.util.HashMap;
 import java.util.Random;
 
 
-public class PlaySound {
-    //makes sound play and activates a audioinputStream.
+public class SoundPlayer {
+    //makes sound play and activates an audioinputStream.
     float SAMPLE_RATE = 44100f;
 
     final byte[] buf = new byte[(int) SAMPLE_RATE];
@@ -20,7 +18,7 @@ public class PlaySound {
     public int rollNumber(HashMap<Integer, Frequency> frequencies){
         return random.nextInt(frequencies.size());
     }
-    public PlaySound(){
+    public SoundPlayer(){
 
     }
     public void generateSineWave(Frequency frequency) {
